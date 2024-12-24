@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.example.petspringdemo.mapper.PetMapper">
+
+    <select id="selectAllPet" resultType="org.example.petspringdemo.entity.PetInfo">
+        select * from P
+    </select>
+
+    <insert id="insertPet" parameterType="org.example.petspringdemo.entity.PetInfo"
+            useGeneratedKeys="true" keyProperty="id">
+            insert into P( name, avatar, species, gender, age, lng, lat, description)
+            value ( #{name}, #{avatar}, #{species}, #{gender}, #{age}, #{lng}, #{lat}, #{description})
+    </insert>
+</mapper>
