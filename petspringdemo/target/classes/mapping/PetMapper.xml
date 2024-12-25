@@ -17,7 +17,7 @@
     </select>
 
     <insert id="insertPet" useGeneratedKeys="true" keyProperty="petId">
-        insert into pet(name, avatar, kind, gender, age, lng, lat, status)
-            value ( #{name}, #{avatar}, #{kind}, #{gender}, #{age}, #{lng}, #{lat}, #{status})
+        insert into pet(add_time, name, avatar, kind, species, gender, age, description, lng, lat, status, belonging)
+            value ( #{addTime},#{name}, #{avatar}, #{kind}, #{species},#{gender}, #{age}, #{description},#{lng}, #{lat}, #{status},#{belonging})
     </insert>
 </mapper>

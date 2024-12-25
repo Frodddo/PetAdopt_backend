@@ -39,4 +39,9 @@ public class PetInfo {
     private String status;
 
     private Integer belonging;
+
+    public PetInfo(LocalDateTime addTime) {
+        this.addTime = LocalDateTime.now();
+    }
+    
 }
