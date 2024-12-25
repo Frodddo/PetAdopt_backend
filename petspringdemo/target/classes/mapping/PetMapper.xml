@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.example.petspringdemo.mapper.PetMapper">
+
+    <!--id唯一标识 type和哪个类做映射 pojo-->
+    <resultMap id="PetResultMap" type="petInfo">
+        <!--id主键 result一般 column表的列名 property pojo实体类属性名
+        1 定义resultMap标签
+        2 select标签中 使用resultMap属性 替换 resultType属性-->
+        <result column="pet_id" property="petId"/>
+        <result column="add_time" property="addTime"/>
+    </resultMap>
+
+    <select id="selectAllPet" resultMap="PetResultMap">
+        select *
+        from pet
+    </select>
+
+    <insert id="insertPet" useGeneratedKeys="true" keyProperty="petId">
+        insert into pet(name, avatar, kind, gender, age, lng, lat, status)
+            value ( #{name}, #{avatar}, #{kind}, #{gender}, #{age}, #{lng}, #{lat}, #{status})
+    </insert>
+</mapper>
