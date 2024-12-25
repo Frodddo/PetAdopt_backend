@@ -43,5 +43,5 @@ public class PetInfo {
     public PetInfo(LocalDateTime addTime) {
         this.addTime = LocalDateTime.now();
     }
-    
+
 }
