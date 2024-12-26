@@ -7,7 +7,7 @@
         <!--id主键 result一般 column表的列名 property pojo实体类属性名
         1 定义resultMap标签
         2 select标签中 使用resultMap属性 替换 resultType属性-->
-        <result column="userid" property="userId"/>
+        <result column="user_id" property="userId"/>
         <result column="reg_time" property="regTime"/>
     </resultMap>
 
@@ -20,19 +20,19 @@
     <select id="checkUserName" resultType="boolean">
         SELECT EXISTS (
             SELECT 1
-            FROM U
-            WHERE username = #{username}
+            FROM user
+            WHERE account = #{account}
         );
     </select>
     
     <select id="verify" resultType="int">
         SELECT COUNT(*)
-        FROM u
-        WHERE username = #{username} AND password = #{password};
+        FROM user
+        WHERE account = #{account} AND password = #{password};
     </select>
 
     <select id="getIdentity" resultType="String">
-        SELECT identity from u where username = #{username};
+        SELECT identity from user where account = #{account};
     </select>
 
 </mapper>

@@ -28,9 +28,10 @@ public class UserInfo {
 
     private String identity;
 
-    private LocalDateTime regTime;
+    private LocalDateTime regTime ;
 
-    public UserInfo(LocalDateTime regTime) {
+    public UserInfo() {
         this.regTime = LocalDateTime.now();
     }
+
 }
