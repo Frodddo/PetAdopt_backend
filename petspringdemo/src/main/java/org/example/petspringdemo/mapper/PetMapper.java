@@ -18,6 +18,8 @@ public interface PetMapper {
 
     void updateStatusById(@Param("pet_id") int pedId,@Param("updated_status") int status);
 
+    void updateAll(PetInfo pet);
+
 
 
 

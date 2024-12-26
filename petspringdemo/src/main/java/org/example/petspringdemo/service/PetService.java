@@ -16,6 +16,9 @@ public interface PetService {
 
     void updateStatusById(Integer petId,Integer updated_status);
 
+    void updateAll(PetInfo pet);
+
+
 
 
 

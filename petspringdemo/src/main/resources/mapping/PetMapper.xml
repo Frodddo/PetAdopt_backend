@@ -19,6 +19,46 @@
             pet_id = #{pet_id}
     </update>
 
+    <!--动态sql更新 可缺省值-->
+    <update id="updateAll">
+        UPDATE pet
+        /*pet_id主键不能修改 enum类型前端做筛选下拉框 belonging重要参数不在这修改*/
+        <set>
+            <if test="name != null and name != '' ">
+                name = #{name}
+            </if>
+            <if test="avatar != null and avatar != '' ">
+                avatar = #{avatar}
+            </if>
+            <if test="kind != null and kind != '' ">
+                kind = #{kind}
+            </if>
+            <if test="species != null and species != '' ">
+                species = #{species}
+            </if>
+            <if test="gender != null and gender != '' ">
+                gender = #{gender}
+            </if>
+            <if test="age != null and age != '' ">
+                age = #{age}
+            </if>
+            <if test="description != null and description != '' ">
+                description = #{description}
+            </if>
+            <if test="lng != null and lng != '' ">
+                lng = #{lng}
+            </if>
+            <if test="lat != null and lat != '' ">
+                lat = #{lat}
+            </if>
+            <if test="status != null and status != '' ">
+                status = #{status}
+            </if>
+        </set>
+        WHERE pet_id = #{petId}
+
+    </update>
+
     <select id="selectAllPet" resultMap="PetResultMap">
         SELECT *
         FROM pet

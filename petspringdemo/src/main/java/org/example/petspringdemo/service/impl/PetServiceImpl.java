@@ -32,4 +32,9 @@ public class PetServiceImpl implements PetService {
     public void updateStatusById(Integer petId, Integer updatedStatus) {
         petMapper.updateStatusById(petId,updatedStatus);
     }
+
+    @Override
+    public void updateAll(PetInfo pet) {
+        petMapper.updateAll(pet);
+    }
 }
