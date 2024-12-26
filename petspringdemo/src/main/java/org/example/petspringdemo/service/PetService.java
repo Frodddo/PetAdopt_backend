@@ -7,6 +7,14 @@ import java.util.List;
 
 public interface PetService {
 
+    //查询
     List<PetInfo> selectAllPet();
+
+    List<PetInfo> selectAllByStatus1();
+
     void insertPet(PetInfo petInfo);
+
+
+
+
 }

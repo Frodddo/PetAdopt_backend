@@ -11,5 +11,11 @@ public interface PetMapper {
     
     List<PetInfo> selectAllPet();
 
+    List<PetInfo> selectAllByStatus1();
+
     void insertPet(PetInfo petInfo);
+
+
+
+
 }

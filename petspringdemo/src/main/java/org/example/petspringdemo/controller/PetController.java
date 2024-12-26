@@ -23,10 +23,18 @@ public class PetController {
         return petService.selectAllPet();
     }
 
+    @RequestMapping("/selectByStatus1")
+    public List<PetInfo> selectAllByStatus1(){
+        return petService.selectAllByStatus1();
+    }
+
     @RequestMapping("/insert/*")
     public void insert(PetInfo petInfo){
         petService.insertPet(petInfo);
     }
+
+
+
 
 
 }

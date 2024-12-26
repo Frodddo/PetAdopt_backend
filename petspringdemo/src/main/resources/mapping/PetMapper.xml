@@ -12,12 +12,19 @@
     </resultMap>
 
     <select id="selectAllPet" resultMap="PetResultMap">
-        select *
-        from pet
+        SELECT *
+        FROM pet
     </select>
 
+    <select id="selectAllByStatus1" resultMap="PetResultMap">
+        SELECT *
+        FROM pet
+        WHERE status = 1
+    </select>
+
+
     <insert id="insertPet" useGeneratedKeys="true" keyProperty="petId">
-        insert into pet(add_time, name, avatar, kind, species, gender, age, description, lng, lat, status, belonging)
-            value ( #{addTime},#{name}, #{avatar}, #{kind}, #{species},#{gender}, #{age}, #{description},#{lng}, #{lat}, #{status},#{belonging})
+        INSERT INTO pet(add_time, name, avatar, kind, species, gender, age, description, lng, lat, status, belonging)
+            VALUE ( #{addTime},#{name}, #{avatar}, #{kind}, #{species},#{gender}, #{age}, #{description},#{lng}, #{lat}, #{status},#{belonging})
     </insert>
 </mapper>

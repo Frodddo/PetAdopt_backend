@@ -19,6 +19,11 @@ public class PetServiceImpl implements PetService {
     }
 
     @Override
+    public List<PetInfo> selectAllByStatus1() {
+        return petMapper.selectAllByStatus1();
+    }
+
+    @Override
     public void insertPet(PetInfo petInfo) {
         petMapper.insertPet(petInfo);
     }
