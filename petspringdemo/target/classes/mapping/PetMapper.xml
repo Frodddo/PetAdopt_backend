@@ -11,14 +11,24 @@
         <result column="add_time" property="addTime"/>
     </resultMap>
 
+    <update id="updateStatusById">
+        UPDATE pet
+        SET
+            status = #{updated_status}
+        WHERE
+            pet_id = #{pet_id}
+    </update>
+
     <select id="selectAllPet" resultMap="PetResultMap">
         SELECT *
         FROM pet
     </select>
-    <select id="selectAllByStatus1" resultMap="PetResultMap">
+
+
+    <select id="selectAllByStatus" resultMap="PetResultMap">
         SELECT *
         FROM pet
-        WHERE status = 1
+        WHERE status = #{status}
     </select>
 
 
