@@ -16,6 +16,8 @@ public class UserInfo {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer userId;
 
+
+
     private String account;
 
     private String nickname;
@@ -28,10 +30,12 @@ public class UserInfo {
 
     private String identity;
 
-    private LocalDateTime regTime ;
+    private LocalDateTime regTime;
 
     public UserInfo() {
-        this.regTime = LocalDateTime.now();
     }
 
+    public UserInfo(LocalDateTime regTime) {
+        this.regTime = LocalDateTime.now();
+    }
 }

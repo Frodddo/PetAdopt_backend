@@ -40,10 +40,11 @@ public class PetInfo {
 
     private Integer belonging;
 
-    public PetInfo() {
-
+    public PetInfo(LocalDateTime addTime) {
         this.addTime = LocalDateTime.now();
     }
 
+    public PetInfo() {
 
+    }
 }

@@ -1,11 +1,14 @@
 package org.example.petspringdemo.service.impl;
 
 
+import org.example.petspringdemo.entity.PetInfo;
 import org.example.petspringdemo.entity.UserInfo;
 import org.example.petspringdemo.mapper.UserMapper;
 import org.example.petspringdemo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -36,4 +39,6 @@ public class UserServiceImpl implements UserService {
     {
         return userMapper.getIdentity(username);
     }
+
+
 }
