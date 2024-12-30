@@ -12,12 +12,12 @@
     </resultMap>
 
     <insert id="insertUser" parameterType="org.example.petspringdemo.entity.UserInfo"
-            useGeneratedKeys="true" keyProperty="id">
+            useGeneratedKeys="true" keyProperty="userId">
         insert into user(account,nickname,password,email,phone,identity,reg_time)
             value ( #{account},#{nickname},#{password},#{email},#{phone},#{identity},#{regTime})
     </insert>
     
-    <select id="checkUserName" resultType="boolean">
+    <select id="checkAccount" resultType="boolean">
         SELECT EXISTS (
             SELECT 1
             FROM user

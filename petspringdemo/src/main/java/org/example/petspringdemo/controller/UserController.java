@@ -23,19 +23,21 @@ public class UserController {
     }
 
     @RequestMapping("/check/*")
-    public boolean check(String username){
+    public boolean check(String account){
         //userService.checkUserName(username);
-        return userService.checkUserName(username);
+        return userService.checkAccount(account);
     }
 
     @RequestMapping("/verify/*")
-    public int verify(String username,String password){
-        return userService.verify(username,password);
+    public int verify(String account,String password){
+        return userService.verify(account,password);
     }
+
+
     @RequestMapping("/getIdentity/*")
-    public String getIdentity(String username)
+    public String getIdentity(String account)
     {
-        return userService.getIdentity(username);
+        return userService.getIdentity(account);
     }
 
 
