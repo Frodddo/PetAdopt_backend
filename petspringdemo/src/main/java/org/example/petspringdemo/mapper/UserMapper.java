@@ -12,11 +12,11 @@ public interface UserMapper {
 
     void insertUser(UserInfo userInfo);
 
-    boolean checkUserName(String username);
+    boolean checkAccount(String account);
 
-    int verify(String username,String password);
+    int verify(String account,String password);
 
-    String getIdentity(String username);
+    String getIdentity(String account);
 
 
 }

@@ -23,21 +23,21 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public boolean checkUserName(String userName)
+    public boolean checkAccount(String account)
     {
-        return  userMapper.checkUserName(userName);
+        return  userMapper.checkAccount(account);
     }
 
     @Override
-    public int verify(String userName,String password)
+    public int verify(String account,String password)
     {
-        return userMapper.verify(userName,password);
+        return userMapper.verify(account,password);
     }
 
     @Override
-    public String getIdentity(String username)
+    public String getIdentity(String account)
     {
-        return userMapper.getIdentity(username);
+        return userMapper.getIdentity(account);
     }
 
 

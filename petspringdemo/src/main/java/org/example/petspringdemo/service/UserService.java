@@ -8,11 +8,11 @@ import java.util.List;
 public interface UserService {
     void insertUser(UserInfo userInfo);
 
-    boolean checkUserName(String userName);
+    boolean checkAccount(String account);
 
     int verify(String userName,String password);
 
-    String getIdentity(String username);
+    String getIdentity(String account);
 
 
 }
