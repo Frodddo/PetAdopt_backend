@@ -14,5 +14,5 @@ public interface UserService {
 
     String getIdentity(String account);
 
-
+    void updateAll(UserInfo user);
 }

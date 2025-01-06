@@ -6,6 +6,7 @@ import org.example.petspringdemo.entity.UserInfo;
 import org.example.petspringdemo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -38,6 +39,12 @@ public class UserController {
     public String getIdentity(String account)
     {
         return userService.getIdentity(account);
+    }
+
+    //动态修改用户信息传递json
+    @RequestMapping("/updateAllWithJson")
+    public void updateAll(@RequestBody UserInfo user){
+        userService.updateAll(user);
     }
 
 

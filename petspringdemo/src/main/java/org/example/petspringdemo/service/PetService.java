@@ -10,6 +10,7 @@ public interface PetService {
     //查询
     List<PetInfo> selectAllPet();
 
+
     List<PetInfo> selectAllByStatus(Integer Status);
 
     void insertPet(PetInfo petInfo);

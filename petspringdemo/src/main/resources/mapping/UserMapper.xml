@@ -16,7 +16,35 @@
         insert into user(account,nickname,password,email,phone,identity,reg_time)
             value ( #{account},#{nickname},#{password},#{email},#{phone},#{identity},#{regTime})
     </insert>
-    
+
+    <!--动态sql更新 可缺省值-->
+    <update id="updateAll">
+        UPDATE pet
+        /*user_id主键不能修改 enum类型前端做筛选下拉框 */
+        <set>
+            <if test="account != null and acoount != '' ">
+                account = #{account}
+            </if>
+            <if test="nickname != null and nickname != '' ">
+                nickname = #{nickname}
+            </if>
+            <if test="password != null and password != '' ">
+                password = #{password}
+            </if>
+            <if test="email != null and email != '' ">
+                email = #{email}
+            </if>
+            <if test="phone != null and phone != '' ">
+                phone = #{phone}
+            </if>
+            <if test="identity != null and identity != '' ">
+                age = #{age}
+            </if>
+        </set>
+        WHERE user_id = #{userId}
+
+    </update>
+
     <select id="checkAccount" resultType="boolean">
         SELECT EXISTS (
             SELECT 1

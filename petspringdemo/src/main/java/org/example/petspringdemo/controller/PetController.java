@@ -28,7 +28,6 @@ public class PetController {
         return petService.selectAllByStatus(status);
     }
 
-    //3.根据名字
 
     /*插入*/
     //1.新建动物信息

@@ -16,6 +16,8 @@ public interface UserMapper {
 
     int verify(String account,String password);
 
+    void updateAll(UserInfo user);
+
     String getIdentity(String account);
 
 
