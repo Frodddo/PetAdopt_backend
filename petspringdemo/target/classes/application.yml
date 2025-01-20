@@ -10,7 +10,8 @@ spring:
 
   datasource:
     username: root
-    password: Dongxiaouo88
+    password: abc123
+#      Dongxiaouo88
     url: jdbc:mysql://localhost:3306/pet
     driver-class-name: com.mysql.cj.jdbc.Driver
 

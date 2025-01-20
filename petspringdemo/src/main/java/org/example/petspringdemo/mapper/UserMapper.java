@@ -2,6 +2,7 @@ package org.example.petspringdemo.mapper;
 
 
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Select;
 import org.example.petspringdemo.entity.PetInfo;
 import org.example.petspringdemo.entity.UserInfo;
 
@@ -20,5 +21,8 @@ public interface UserMapper {
 
     String getIdentity(String account);
 
+    void deleteById(Integer id);
+
+    List<UserInfo> page(String account, String email, String phone);
 
 }

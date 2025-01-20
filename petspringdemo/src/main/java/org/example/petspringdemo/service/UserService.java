@@ -1,5 +1,6 @@
 package org.example.petspringdemo.service;
 
+import org.example.petspringdemo.entity.PageBean;
 import org.example.petspringdemo.entity.PetInfo;
 import org.example.petspringdemo.entity.UserInfo;
 
@@ -15,4 +16,8 @@ public interface UserService {
     String getIdentity(String account);
 
     void updateAll(UserInfo user);
+
+    void deleteById(Integer id);
+
+    PageBean page(Integer pageNo, Integer pageSize, String account, String email, String phone);
 }

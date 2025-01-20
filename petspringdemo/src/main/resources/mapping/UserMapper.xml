@@ -63,4 +63,26 @@
         SELECT identity from user where account = #{account};
     </select>
 
+    <delete id="deleteById">
+        delete from user
+        where user_id = #{id};
+    </delete>
+
+<!--    分页条件查询，支持模糊匹配-->
+    <select id="page" resultType="org.example.petspringdemo.entity.UserInfo">
+        select * from user
+        <where>
+            <if test="account != null">
+                account like concat('%', #{account} ,'%')
+            </if>
+            <if test="email != null">
+                and email like concat('%', #{email} ,'%')
+            </if>
+            <if test="phone != null">
+                and phone like concat('%', #{phone} ,'%')
+            </if>
+        </where>
+        order by user_id asc
+    </select>
+
 </mapper>

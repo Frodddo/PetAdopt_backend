@@ -1,14 +1,14 @@
 package org.example.petspringdemo.controller;
 
 
+import org.example.petspringdemo.entity.PageBean;
 import org.example.petspringdemo.entity.PetInfo;
 import org.example.petspringdemo.entity.UserInfo;
 import org.example.petspringdemo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/user")
@@ -47,5 +47,30 @@ public class UserController {
         userService.updateAll(user);
     }
 
+    /**
+     * 删除用户
+     * @param id
+     */
+    @RequestMapping("/deleteById/{id}")
+    public void deleteById(@PathVariable Integer id){
+        userService.deleteById(id);
+    }
+
+    /**
+     * 分页查询
+     * @param pageNo
+     * @param pageSize
+     * @param account
+     * @param email
+     * @param phone
+     * @return
+     */
+    @RequestMapping("/page")
+    public PageBean page(@RequestParam(defaultValue = "1") Integer pageNo,
+                         @RequestParam(defaultValue = "5") Integer pageSize,
+                         String account, String email, String phone){
+        PageBean pageBean = userService.page(pageNo, pageSize, account, email, phone);
+        return pageBean;
+    }
 
 }

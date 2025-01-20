@@ -16,7 +16,35 @@
         insert into user(account,nickname,password,email,phone,identity,reg_time)
             value ( #{account},#{nickname},#{password},#{email},#{phone},#{identity},#{regTime})
     </insert>
-    
+
+    <!--动态sql更新 可缺省值-->
+    <update id="updateAll">
+        UPDATE pet
+        /*user_id主键不能修改 enum类型前端做筛选下拉框 */
+        <set>
+            <if test="account != null and acoount != '' ">
+                account = #{account}
+            </if>
+            <if test="nickname != null and nickname != '' ">
+                nickname = #{nickname}
+            </if>
+            <if test="password != null and password != '' ">
+                password = #{password}
+            </if>
+            <if test="email != null and email != '' ">
+                email = #{email}
+            </if>
+            <if test="phone != null and phone != '' ">
+                phone = #{phone}
+            </if>
+            <if test="identity != null and identity != '' ">
+                age = #{age}
+            </if>
+        </set>
+        WHERE user_id = #{userId}
+
+    </update>
+
     <select id="checkAccount" resultType="boolean">
         SELECT EXISTS (
             SELECT 1
@@ -33,6 +61,28 @@
 
     <select id="getIdentity" resultType="String">
         SELECT identity from user where account = #{account};
+    </select>
+
+    <delete id="deleteById">
+        delete from user
+        where user_id = #{id};
+    </delete>
+
+<!--    分页条件查询，支持模糊匹配-->
+    <select id="page" resultType="org.example.petspringdemo.entity.UserInfo">
+        select * from user
+        <where>
+            <if test="account != null">
+                account like concat('%', #{account} ,'%')
+            </if>
+            <if test="email != null">
+                and email like concat('%', #{email} ,'%')
+            </if>
+            <if test="phone != null">
+                and phone like concat('%', #{phone} ,'%')
+            </if>
+        </where>
+        order by user_id asc
     </select>
 
 </mapper>
