@@ -16,7 +16,14 @@
         insert into user(account,nickname,password,email,phone,identity,reg_time)
             value ( #{account},#{nickname},#{password},#{email},#{phone},#{identity},#{regTime})
     </insert>
-    
+
+
+
+    <delete id="deleteByUserId">
+        delete from user
+        where user_id = #{userId}
+    </delete>
+
     <select id="checkAccount" resultType="boolean">
         SELECT EXISTS (
             SELECT 1
@@ -51,5 +58,42 @@
         join user on user.user_id = pet.belonging
         where user.account = #{account} and user.password = #{password} and pet.status = '6'
     </select>
+
+    <select id="getUserInfo" resultMap="UserResultMap">
+        select * from user
+        where identity = '用户'
+    </select>
+
+    <select id="getUserInfomationById" resultMap="UserResultMap">
+        select *
+        from user
+        where user_id = #{userId}
+    </select>
+
+    <update id="updateAll">
+        UPDATE user
+        /*pet_id主键不能修改 enum类型前端做筛选下拉框 belonging重要参数不在这修改*/
+        <set>
+            <if test="account != null and account != '' ">
+                account = #{account},
+            </if>
+            <if test="nickname != null and nickname != '' ">
+                nickname = #{nickname},
+            </if>
+            <if test="password != null and password != '' ">
+                password = #{password},
+            </if>
+            <if test="email != null and email != '' ">
+                email = #{email},
+            </if>
+            <if test="phone != null and phone != '' ">
+                phone = #{phone},
+            </if>
+
+
+        </set>
+        WHERE user_id = #{userId}
+
+    </update>
 
 </mapper>

@@ -45,4 +45,7 @@ public class PetServiceImpl implements PetService {
 
     @Override
     public PetInfo selectPetById(int petId) {return petMapper.selectPetById(petId);};
+
+    @Override
+    public List<PetInfo> selectAllByStatusAndBelonging(int status, int belonging){return petMapper.selectAllByStatusAndBelonging(status,belonging);};
 }

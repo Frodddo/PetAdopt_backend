@@ -74,6 +74,12 @@
         WHERE status = #{status}
     </select>
 
+    <select id="selectAllByStatusAndBelonging" resultMap="PetResultMap">
+        SELECT *
+        FROM pet
+        WHERE status = #{status} AND belonging = #{belonging}
+    </select>
+
 
     <insert id="insertPet" useGeneratedKeys="true" keyProperty="petId">
         INSERT INTO pet(add_time, name, avatar, kind, species, gender, age, description, lng, lat, status, belonging)

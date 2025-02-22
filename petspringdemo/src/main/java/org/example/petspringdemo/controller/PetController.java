@@ -59,4 +59,6 @@ public class PetController {
     @RequestMapping("/selectPetById/*")
     public PetInfo selectPetById(int petId){return petService.selectPetById(petId);}
 
+    @RequestMapping("/selectAllByStatusAndBelonging/*")
+    public List<PetInfo> selectAllByStatusAndBelonging(int status, int belonging){return petService.selectAllByStatusAndBelonging(status,belonging);}
 }

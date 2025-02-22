@@ -24,4 +24,6 @@ public interface PetMapper {
     List<PetUserDTO> selectUnhandledPet();
 
     PetInfo selectPetById(int petId);
+
+    List<PetInfo> selectAllByStatusAndBelonging(int status, int belonging);
 }

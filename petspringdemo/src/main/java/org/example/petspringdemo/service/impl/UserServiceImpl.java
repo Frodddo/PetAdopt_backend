@@ -17,6 +17,11 @@ public class UserServiceImpl implements UserService {
     private UserMapper userMapper;
 
     @Override
+    public int updateAll(UserInfo user) {
+        return userMapper.updateAll(user);
+    }
+
+    @Override
     public void insertUser(UserInfo userInfo)
     {
         userMapper.insertUser(userInfo);
@@ -35,6 +40,11 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public List<UserInfo> getUserInfomationById(int userId) {
+        return userMapper.getUserInfomationById(userId);
+    }
+
+    @Override
     public List<UserInfo> getUserInformation(String account,String password)
     {return userMapper.getUserInformation(account,password);};
 
@@ -42,5 +52,14 @@ public class UserServiceImpl implements UserService {
     public List<PetInfo> getAdoptedPetInformation(String account,String password)
     {
         return userMapper.getAdoptedPetInformation(account,password);
+    }
+
+    @Override
+    public int deleteByUserId(int userId) {
+        return userMapper.deleteByUserId(userId);
+    }
+
+    public List<UserInfo> getUserInfo(){
+        return userMapper.getUserInfo();
     }
 }
