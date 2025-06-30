@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.example.petspringdemo.mapper.PetMapper">
+
+    <!--id唯一标识 type和哪个类做映射 pojo-->
+    <resultMap id="PetResultMap" type="petInfo">
+        <!--id主键 result一般 column表的列名 property pojo实体类属性名
+        1 定义resultMap标签
+        2 select标签中 使用resultMap属性 替换 resultType属性-->
+        <result column="pet_id" property="petId"/>
+        <result column="add_time" property="addTime"/>
+    </resultMap>
+
+    <update id="updateStatusById">
+        UPDATE pet
+        SET
+            status = #{updated_status}
+        WHERE
+            pet_id = #{pet_id}
+    </update>
+
+    <!--动态sql更新 可缺省值-->
+    <update id="updateAll">
+        UPDATE pet
+        /*pet_id主键不能修改 enum类型前端做筛选下拉框 belonging重要参数不在这修改*/
+        <set>
+            <if test="name != null and name != '' ">
+                name = #{name},
+            </if>
+            <if test="avatar != null and avatar != '' ">
+                avatar = #{avatar},
+            </if>
+            <if test="kind != null and kind != '' ">
+                kind = #{kind},
+            </if>
+            <if test="species != null and species != '' ">
+                species = #{species},
+            </if>
+            <if test="gender != null and gender != '' ">
+                gender = #{gender},
+            </if>
+            <if test="age != null and age != '' ">
+                age = #{age},
+            </if>
+            <if test="description != null and description != '' ">
+                description = #{description},
+            </if>
+            <if test="lng != null and lng != '' ">
+                lng = #{lng},
+            </if>
+            <if test="lat != null and lat != '' ">
+                lat = #{lat},
+            </if>
+            <if test="status != null and status != '' ">
+                status = #{status},
+            </if>
+            <if test="belonging != null and belonging != '' ">
+                belonging = #{belonging},
+            </if>
+        </set>
+        WHERE pet_id = #{petId}
+
+    </update>
+
+    <select id="selectAllPet" resultMap="PetResultMap">
+        SELECT *
+        FROM pet
+    </select>
+
+
+    <select id="selectAllByStatus" resultMap="PetResultMap">
+        SELECT *
+        FROM pet
+        WHERE status = #{status}
+    </select>
+
+    <select id="selectAllByStatusAndBelonging" resultMap="PetResultMap">
+        SELECT *
+        FROM pet
+        WHERE status = #{status} AND belonging = #{belonging}
+    </select>
+
+
+    <insert id="insertPet" useGeneratedKeys="true" keyProperty="petId">
+        INSERT INTO pet(add_time, name, avatar, kind, species, gender, age, description, lng, lat, status, belonging)
+            VALUE ( #{addTime},#{name}, #{avatar}, #{kind}, #{species},#{gender}, #{age}, #{description},#{lng}, #{lat}, #{status},#{belonging})
+    </insert>
+
+
+
+    <resultMap id="PetUserDTOResultMap" type="PetUserDTO">
+        <!--id主键 result一般 column表的列名 property pojo实体类属性名
+        1 定义resultMap标签
+        2 select标签中 使用resultMap属性 替换 resultType属性-->
+        <result column="pet_id" property="petId"/>
+        <result column="user_id" property="userId"/>
+    </resultMap>
+
+    <select id="selectUnhandledPet" resultMap = "PetUserDTOResultMap">
+        SELECT pet.pet_id,user.user_id,name,avatar,account from pet,user
+        where pet.belonging = user.user_id
+          and pet.status = '4'
+    </select>
+
+    <select id="selectPetById" resultMap="PetResultMap">
+        select * from pet where pet_id = #{petId}
+    </select>
+</mapper>

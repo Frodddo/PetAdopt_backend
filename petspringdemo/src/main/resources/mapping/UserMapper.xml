@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.example.petspringdemo.mapper.UserMapper">
+
+    <!--id唯一标识 type和哪个类做映射 pojo-->
+    <resultMap id="UserResultMap" type="userInfo">
+        <!--id主键 result一般 column表的列名 property pojo实体类属性名
+        1 定义resultMap标签
+        2 select标签中 使用resultMap属性 替换 resultType属性-->
+        <result column="user_id" property="userId"/>
+        <result column="reg_time" property="regTime"/>
+    </resultMap>
+
+    <insert id="insertUser" parameterType="org.example.petspringdemo.entity.UserInfo"
+            useGeneratedKeys="true" keyProperty="userId">
+        insert into user(account,nickname,password,email,phone,identity,reg_time)
+            value ( #{account},#{nickname},#{password},#{email},#{phone},#{identity},#{regTime})
+    </insert>
+
+
+
+    <delete id="deleteByUserId">
+        delete from user
+        where user_id = #{userId}
+    </delete>
+
+    <select id="checkAccount" resultType="boolean">
+        SELECT EXISTS (
+            SELECT 1
+            FROM user
+            WHERE account = #{account}
+        );
+    </select>
+    
+    <select id="verify" resultType="int">
+        SELECT COUNT(*)
+        FROM user
+        WHERE account = #{account} AND password = #{password};
+    </select>
+
+
+    <select id="getUserInformation" resultMap="UserResultMap">
+        SELECT *
+        FROM user
+        WHERE account = #{account} AND password = #{password};
+    </select>
+
+    <resultMap id="PetUserDTOResultMap" type="PetUserDTO">
+        <!--id主键 result一般 column表的列名 property pojo实体类属性名
+        1 定义resultMap标签
+        2 select标签中 使用resultMap属性 替换 resultType属性-->
+        <result column="pet_id" property="petId"/>
+        <result column="user_id" property="userId"/>
+    </resultMap>
+
+    <select id="getAdoptedPetInformation" resultMap="PetUserDTOResultMap">
+        select * from pet
+        join user on user.user_id = pet.belonging
+        where user.account = #{account} and user.password = #{password} and pet.status = '6'
+    </select>
+
+    <select id="getUserInfo" resultMap="UserResultMap">
+        select * from user
+        where identity = '用户'
+    </select>
+
+    <select id="getUserInfomationById" resultMap="UserResultMap">
+        select *
+        from user
+        where user_id = #{userId}
+    </select>
+
+    <update id="updateAll">
+        UPDATE user
+        /*pet_id主键不能修改 enum类型前端做筛选下拉框 belonging重要参数不在这修改*/
+        <set>
+            <if test="account != null and account != '' ">
+                account = #{account},
+            </if>
+            <if test="nickname != null and nickname != '' ">
+                nickname = #{nickname},
+            </if>
+            <if test="password != null and password != '' ">
+                password = #{password},
+            </if>
+            <if test="email != null and email != '' ">
+                email = #{email},
+            </if>
+            <if test="phone != null and phone != '' ">
+                phone = #{phone},
+            </if>
+
+
+        </set>
+        WHERE user_id = #{userId}
+
+    </update>
+
+</mapper>
